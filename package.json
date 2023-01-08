@@ -1,7 +1,7 @@
 {
-  "name": "formik-persist",
+  "name": "use-persist",
   "version": "0.0.1",
-  "description": "Persist Formik values",
+  "description": "Persist values in your favorite storage",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "scripts": {
@@ -10,24 +10,26 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nomadware-io/formik-persist.git"
+    "url": "git+https://github.com/nomadware-io/use-persist.git"
   },
   "keywords": [
     "react",
-    "navigate",
-    "history",
-    "away",
-    "block"
+    "react-native",
+    "persist",
+    "use",
+    "storage",
+    "local",
+    "session",
+    "async"
   ],
   "author": "fum4",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nomadware-io/formik-persist/issues"
+    "url": "https://github.com/nomadware-io/use-persist/issues"
   },
-  "homepage": "https://github.com/nomadware-io/formik-persist#readme",
+  "homepage": "https://github.com/nomadware-io/use-persist#readme",
   "peerDependencies": {
-    "react": "^18.0.0",
-    "formik": "^2.0.0"
+    "react": "^18.0.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.18.9",
