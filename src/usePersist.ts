@@ -1,18 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 
 import { getStorageValues, filterValues } from './utils';
-
-export interface PersistOptions {
-  key?: string;
-  values: Record<string, any>;
-  setValues(values: Record<string, any>): void;
-  setToStorage?(key: string, values: string): void;
-  getFromStorage?(key: string): any;
-  encode?(values: Record<string, any>): any;
-  decode?(values: string): any;
-  include?: string[];
-  exclude?: string[];
-}
+import { PersistOptions } from './types';
 
 const usePersist = ({
   key = 'use-persist',
