@@ -42,7 +42,7 @@
   },
   "release-it": {
     "git": {
-      "pushRepo": "https://fum4@github.com/nomadware-io/use-persist.git",
+      "pushRepo": "nomadware-io/use-persist",
       "requireUpstream": true
     }
   }
