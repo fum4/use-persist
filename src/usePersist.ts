@@ -1,13 +1,19 @@
-import { useRef, useEffect } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+
+import { getStorageValues, filterValues } from './utils';
+
+type Values = Record<string, any>;
 
 export interface PersistOptions {
   key?: string;
-  values: any;
-  setValues(values: any): void;
-  setToStorage?(key: string, values: any): void;
+  values: Values;
+  setValues(values: Values): void;
+  setToStorage?(key: string, values: string): void;
   getFromStorage?(key: string): any;
-  encode?(values: any): any;
-  decode?(values: any): any;
+  encode?(values: Values): any;
+  decode?(values: string): any;
+  include?: string[];
+  exclude?: string[];
 }
 
 const usePersist = ({
@@ -18,26 +24,37 @@ const usePersist = ({
   getFromStorage = localStorage.getItem,
   encode = JSON.stringify,
   decode = JSON.parse,
+  include = null,
+  exclude = null,
 }: PersistOptions) => {
-  const initialValues = useRef(values);
+  const initialValues = useMemo(() => (
+    getStorageValues(key, decode, getFromStorage)
+  ), [ key, decode, getFromStorage ]);
+  const [ initialized, setInitialized ] = useState(!initialValues);
 
   useEffect(() => {
-    const persisted = getFromStorage(key);
-
-    if (persisted) {
-      const persistedValues = decode(persisted);
-
-      if (persistedValues) {
-        setValues(persistedValues);
-      }
+    if (initialValues) {
+      setValues(initialValues);
     }
-  }, [ key, decode, getFromStorage, setValues ]);
+  }, [ setValues, initialValues ]);
 
   useEffect(() => {
-    if (values !== initialValues.current) {
-      setToStorage(key, encode(values));
+    if (initialized) {
+      const filteredValues = filterValues(values, include, exclude);
+      setToStorage(key, encode(filteredValues));
+    } else if (encode(values) === encode(initialValues)) {
+      setInitialized(true);
     }
-  }, [ key, values, encode, setToStorage ]);
+  }, [
+    key,
+    values,
+    initialValues,
+    initialized,
+    setToStorage,
+    encode,
+    include,
+    exclude
+  ]);
 }
 
 export default usePersist;
