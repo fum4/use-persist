@@ -1,7 +1,7 @@
 {
   "name": "@nw/use-persist",
   "version": "0.0.1",
-  "description": "Persist values in your favorite storage",
+  "description": "Persist values in your favorite storage with ease!",
   "main": "lib/index.js",
   "module": "lib/index.js",
   "scripts": {

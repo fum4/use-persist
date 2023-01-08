@@ -2,15 +2,13 @@ import { useState, useMemo, useEffect } from 'react';
 
 import { getStorageValues, filterValues } from './utils';
 
-type Values = Record<string, any>;
-
 export interface PersistOptions {
   key?: string;
-  values: Values;
-  setValues(values: Values): void;
+  values: Record<string, any>;
+  setValues(values: Record<string, any>): void;
   setToStorage?(key: string, values: string): void;
   getFromStorage?(key: string): any;
-  encode?(values: Values): any;
+  encode?(values: Record<string, any>): any;
   decode?(values: string): any;
   include?: string[];
   exclude?: string[];
