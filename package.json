@@ -1,5 +1,5 @@
 {
-  "name": "use-persist",
+  "name": "@nw/use-persist",
   "version": "0.0.1",
   "description": "Persist values in your favorite storage",
   "main": "lib/index.js",
